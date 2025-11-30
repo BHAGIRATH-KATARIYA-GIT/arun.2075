@@ -16,10 +16,11 @@ Built with a clean layout and bold aesthetic, the site blends smooth navigation 
 ---
 
 ## 🔐 Login Details (If Required)
-
+username = arun <br>
+password = 1234
 
 ## 🚀 Deployment Link (Mandatory)
 Live Project Link:  
-https://your-deployed-project-link.com
+https://arun-2075-qr76.vercel.app/
 
 ---
