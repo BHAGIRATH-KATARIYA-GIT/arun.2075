@@ -20,6 +20,6 @@ password = 1234
 
 ## 🚀 Deployment Link (Mandatory)
 Live Project Link:  
-https://arun-2075-qr76.vercel.app/
+https://arun-2075.vercel.app/login.html
 
 ---
