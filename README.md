@@ -10,8 +10,7 @@
 ---
 
 ## 📝 Project Description
-Pulse Threads is a modern, visually engaging fashion e-commerce platform designed for a seamless shopping experience across menswear, womenswear, kidswear, and discounted bundles.
-Built with a clean layout and bold aesthetic, the site blends smooth navigation with dynamic UI elements such as animated hero visuals, responsive grids, and interactive cart functionality.
+Pulse Threads is a modern, visually captivating fashion e-commerce platform designed for a seamless and intuitive shopping experience across menswear, womenswear, kidswear, and exclusive discounted bundles. With its clean layout, bold aesthetics, animated hero sections, responsive product grids, and dynamic UI elements, the platform ensures smooth navigation and engaging interaction. It also includes secure authentication and easy login, allowing users to conveniently add items to their cart, save favourites, and enjoy a personalised and effortless shopping journey.
 
 ---
 
