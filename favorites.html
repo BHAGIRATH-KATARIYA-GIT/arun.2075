@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulse Threads | Favorites</title>
+    <link rel="stylesheet" href="css/cartPage.css">
+    <link rel="stylesheet" href="css/favoritesPage.css">
+    <script src="js/auth-guard.js"></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="logo">Pulse Threads</div>
+        <nav class="main-nav">
+            <a href="index.html">Home</a>
+            <a href="mens.html">Mens</a>
+            <a href="womens.html">Womens</a>
+            <a href="kids.html">Kids</a>
+            <a href="discounts.html">Discounts</a>
+        </nav>
+        <a class="favorites-link active" href="favorites.html">Favorites</a>
+        <a class="cart" href="cart.html">
+            Cart <span data-cart-count aria-live="polite">0</span>
+        </a>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <h1>Your favorites</h1>
+            <p>All the items you've saved for later.</p>
+        </section>
+
+        <section class="favorites-container">
+            <div id="favorites-list" class="favorites-grid"></div>
+            <div id="empty-favorites" class="empty-state" style="display:none;">
+                <p>You haven't added any favorites yet.</p>
+                <a href="index.html" class="cta-link">Start shopping</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Pulse Threads. All rights reserved.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const favoritesList = document.getElementById("favorites-list");
+            const emptyState = document.getElementById("empty-favorites");
+            
+            function renderFavorites() {
+                const favorites = window.getFavorites ? window.getFavorites() : [];
+                
+                if (favorites.length === 0) {
+                    favoritesList.style.display = "none";
+                    emptyState.style.display = "block";
+                    return;
+                }
+                
+                favoritesList.style.display = "grid";
+                emptyState.style.display = "none";
+                favoritesList.innerHTML = "";
+                
+                favorites.forEach(item => {
+                    const card = document.createElement("article");
+                    card.className = "favorite-card";
+                    card.setAttribute("data-add-to-cart", "");
+                    card.setAttribute("data-category", item.category);
+                    card.setAttribute("data-product", item.product);
+                    
+                    let imageClass = "";
+                    let description = "";
+                    
+                    if (item.category === "mens") {
+                        imageClass = "mens";
+                        description = "Menswear pick";
+                    } else if (item.category === "womens") {
+                        imageClass = "womens";
+                        description = "Womenswear pick";
+                    } else if (item.category === "kids") {
+                        imageClass = "kids";
+                        description = "Kidswear pick";
+                    } else if (item.category === "discount") {
+                        imageClass = "discount";
+                        description = "Discount deal";
+                    }
+                    
+                    card.innerHTML = `
+                        <button class="favorite-btn active" data-favorite-btn aria-label="Remove from favorites">♥</button>
+                        <div class="card-image ${imageClass}"></div>
+                        <h3>${item.product}</h3>
+                        <p class="category-label">${description}</p>
+                        <button type="button" class="add-cart-btn">Add to cart</button>
+                    `;
+                    
+                    favoritesList.appendChild(card);
+                });
+                
+                // Set up favorite buttons
+                const favoriteButtons = favoritesList.querySelectorAll("[data-favorite-btn]");
+                favoriteButtons.forEach(button => {
+                    button.addEventListener("click", (e) => {
+                        e.stopPropagation();
+                        const card = button.closest("[data-add-to-cart]");
+                        const product = card.getAttribute("data-product");
+                        const category = card.getAttribute("data-category");
+                        
+                        // Remove from favorites
+                        const favorites = window.getFavorites ? window.getFavorites() : [];
+                        const itemKey = `${product}_${category}`;
+                        const index = favorites.findIndex(item => `${item.product}_${item.category}` === itemKey);
+                        
+                        if (index > -1) {
+                            favorites.splice(index, 1);
+                            localStorage.setItem("pulseThreadsFavorites", JSON.stringify(favorites));
+                            renderFavorites();
+                        }
+                    });
+                });
+                
+                // Set up add to cart buttons
+                const addCartButtons = favoritesList.querySelectorAll(".add-cart-btn");
+                addCartButtons.forEach(button => {
+                    button.addEventListener("click", () => {
+                        const card = button.closest("[data-add-to-cart]");
+                        const product = card.getAttribute("data-product");
+                        const category = card.getAttribute("data-category");
+                        
+                        // Use the addToCart function from main.js if available
+                        if (window.addToCartFromFavorites) {
+                            window.addToCartFromFavorites(product, category);
+                        } else {
+                            // Fallback: manually add to cart
+                            try {
+                                const STORAGE_KEY = "pulseThreadsCart";
+                                const raw = localStorage.getItem(STORAGE_KEY);
+                                const cartState = raw ? JSON.parse(raw) : { count: 0, items: [] };
+                                cartState.count += 1;
+                                cartState.items.push({ product, category });
+                                localStorage.setItem(STORAGE_KEY, JSON.stringify(cartState));
+                                
+                                // Update cart count if element exists
+                                const cartCountEl = document.querySelector("[data-cart-count]");
+                                if (cartCountEl) {
+                                    cartCountEl.textContent = cartState.count.toString();
+                                }
+                            } catch (e) {
+                                console.error("Error adding to cart:", e);
+                            }
+                        }
+                        
+                        button.classList.add("pulse");
+                        setTimeout(() => button.classList.remove("pulse"), 400);
+                    });
+                });
+            }
+            
+            renderFavorites();
+            
+            // Listen for storage changes to update favorites
+            window.addEventListener("storage", () => {
+                renderFavorites();
+            });
+        });
+    </script>
+</body>
+</html>
+

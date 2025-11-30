@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pulse Threads | Menswear</title>
     <link rel="stylesheet" href="css/mensPage.css">
+    <script src="js/auth-guard.js"></script>
 </head>
 <body>
     <header class="site-header">
@@ -16,6 +17,7 @@
             <a href="kids.html">Kids</a>
             <a href="discounts.html">Discounts</a>
         </nav>
+        <a class="favorites-link" href="favorites.html">Favorites</a>
         <a class="cart" href="cart.html">
             Cart <span data-cart-count aria-live="polite">0</span>
         </a>
@@ -32,18 +34,21 @@
 
         <section class="product-grid">
             <article data-add-to-cart data-category="mens" data-product="Arc Parka">
+                <button class="favorite-btn" data-favorite-btn aria-label="Add to favorites">♥</button>
                 <div class="img arc"></div>
                 <h3>Arc Parka</h3>
                 <p>Waterproof shell with thermal-mapped lining.</p>
                 <button type="button">Add to cart</button>
             </article>
             <article data-add-to-cart data-category="mens" data-product="Halo Knit Set">
+                <button class="favorite-btn" data-favorite-btn aria-label="Add to favorites">♥</button>
                 <div class="img halo"></div>
                 <h3>Halo Knit Set</h3>
                 <p>Coordinated top and jogger with ribbed comfort.</p>
                 <button type="button">Add to cart</button>
             </article>
             <article data-add-to-cart data-category="mens" data-product="Strata Blazer">
+                <button class="favorite-btn" data-favorite-btn aria-label="Add to favorites">♥</button>
                 <div class="img strata"></div>
                 <h3>Strata Blazer</h3>
                 <p>Airy construction and hidden zip pockets.</p>

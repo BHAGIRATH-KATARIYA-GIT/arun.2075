@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Pulse Threads</title>
-    <link rel="stylesheet" href="css/HomePage.css">
+    <link rel="stylesheet" href="css/loginPage.css">
 </head>
 
 <body>
@@ -18,29 +19,67 @@
     </nav>
 </header>
 
-<main style="padding:4rem 5%;max-width:400px;margin:auto;">
-    <h2 style="margin-bottom:1rem;">Login</h2>
+<main class="login-container">
+    <div class="login-form">
+        <h2>Welcome back</h2>
+        <p>Sign in to continue shopping</p>
 
-    <input id="usernameInput" type="text" placeholder="Username" style="width:100%;padding:0.8rem;margin-bottom:1rem;border-radius:8px;border:1px solid #ccc;">
-    <input id="passwordInput" type="password" placeholder="Password" style="width:100%;padding:0.8rem;margin-bottom:1rem;border-radius:8px;border:1px solid #ccc;">
+        <input id="usernameInput" type="text" placeholder="Username" autocomplete="username">
+        <input id="passwordInput" type="password" placeholder="Password" autocomplete="current-password">
 
-    <button id="loginBtn" style="width:100%;padding:0.9rem;background:#f97316;color:white;border:none;border-radius:8px;font-weight:600;">Login</button>
+        <button id="loginBtn">Login</button>
 
-    <p id="loginMsg" style="margin-top:1rem;color:red;"></p>
+        <p id="loginMsg" class="login-msg" style="display:none;"></p>
+    </div>
 </main>
+
+<footer>
+    <p>© 2025 Pulse Threads. All rights reserved.</p>
+</footer>
 
 <script>
 document.getElementById("loginBtn").addEventListener("click", () => {
     const u = document.getElementById("usernameInput").value.trim();
     const p = document.getElementById("passwordInput").value.trim();
+    const msgEl = document.getElementById("loginMsg");
 
     if (u === "" || p === "") {
-        document.getElementById("loginMsg").textContent = "Enter username and password";
+        msgEl.textContent = "Please enter both username and password";
+        msgEl.className = "login-msg error";
+        msgEl.style.display = "block";
         return;
     }
 
-    localStorage.setItem("PulseUser", JSON.stringify({ username: u, password: p, loggedIn: true }));
-    window.location.href = "index.html";
+    // Validate credentials - only arun124 / 1234 is valid
+    const validUsername = "arun";
+    const validPassword = "1234";
+
+    if (u !== validUsername || p !== validPassword) {
+        msgEl.textContent = "Invalid username or password. Please try again.";
+        msgEl.className = "login-msg error";
+        msgEl.style.display = "block";
+        return;
+    }
+
+    // Store user login info
+    localStorage.setItem("PulseUser", JSON.stringify({ username: u, loggedIn: true }));
+    
+    // Show success message briefly
+    msgEl.textContent = "Login successful! Redirecting...";
+    msgEl.className = "login-msg success";
+    msgEl.style.display = "block";
+    
+    // Redirect to home page
+    setTimeout(() => {
+        window.location.href = "index.html";
+    }, 500);
+});
+
+// Allow Enter key to submit
+document.getElementById("passwordInput").addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        document.getElementById("loginBtn").click();
+    }
 });
 </script>
 </body>

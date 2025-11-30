@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pulse Threads | Womenswear</title>
     <link rel="stylesheet" href="css/womenPage.css">
+    <script src="js/auth-guard.js"></script>
 </head>
 <body>
     <header class="site-header">
@@ -16,6 +17,7 @@
             <a href="kids.html">Kids</a>
             <a href="discounts.html">Discounts</a>
         </nav>
+        <a class="favorites-link" href="favorites.html">Favorites</a>
         <a class="cart" href="cart.html">
             Cart <span data-cart-count aria-live="polite">0</span>
         </a>
@@ -32,18 +34,21 @@
 
         <section class="product-grid">
             <article data-add-to-cart data-category="womens" data-product="Lithe Wrap Set">
+                <button class="favorite-btn" data-favorite-btn aria-label="Add to favorites">♥</button>
                 <div class="img wrap"></div>
                 <h3>Lithe Wrap Set</h3>
                 <p>Convertible wrap with removable tonal belt.</p>
                 <button type="button">Add to cart</button>
             </article>
             <article data-add-to-cart data-category="womens" data-product="Solace Trench">
+                <button class="favorite-btn" data-favorite-btn aria-label="Add to favorites">♥</button>
                 <div class="img trench"></div>
                 <h3>Solace Trench</h3>
                 <p>Storm flaps, matte hardware, and soft-brushed lining.</p>
                 <button type="button">Add to cart</button>
             </article>
             <article data-add-to-cart data-category="womens" data-product="Aster Knit Dress">
+                <button class="favorite-btn" data-favorite-btn aria-label="Add to favorites">♥</button>
                 <div class="img aster"></div>
                 <h3>Aster Knit Dress</h3>
                 <p>Rib-knit comfort with structured shoulders.</p>

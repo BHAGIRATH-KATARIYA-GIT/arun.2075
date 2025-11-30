@@ -37,6 +37,24 @@ a {
     opacity: 1;
 }
 
+.favorites-link {
+    background: #ec4899;
+    color: #fff;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    font-weight: 600;
+    margin-right: 0.5rem;
+    transition: opacity 0.3s ease;
+}
+
+.favorites-link:hover {
+    opacity: 0.85;
+}
+
+.favorites-link.active {
+    background: #be185d;
+}
+
 .cart {
     background: #2563eb;
     color: #fff;
@@ -79,9 +97,24 @@ a {
     font-weight: 600;
 }
 
-.cart-details li span {
+.cart-details li .product-name {
+    font-size: 1rem;
+    color: #0f172a;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.cart-details li .product-label {
     font-size: 0.85rem;
-    color: #475569;
+    color: #64748b;
+    font-weight: 400;
+}
+
+.cart-details li .product-price-cart {
+    font-size: 1.1rem;
+    color: #0f172a;
+    font-weight: 700;
 }
 
 .empty-state {
@@ -90,11 +123,35 @@ a {
     color: #94a3b8;
 }
 
+.cart-summary {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid #e2e8f0;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.total-label {
+    color: #64748b;
+}
+
+.total-amount {
+    color: #0f172a;
+}
+
 .cart-actions {
     margin-top: 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .cart-actions button {
@@ -105,11 +162,37 @@ a {
     color: #fff;
     cursor: pointer;
     font-weight: 600;
+    transition: opacity 0.3s ease;
+}
+
+.cart-actions button:hover {
+    opacity: 0.85;
 }
 
 .cart-actions a {
     color: #2563eb;
     font-weight: 600;
+    transition: opacity 0.3s ease;
+}
+
+.cart-actions a:hover {
+    opacity: 0.7;
+}
+
+.checkout-btn {
+    background: linear-gradient(120deg, #f97316, #ec4899) !important;
+    color: #fff !important;
+    padding: 0.9rem 2rem !important;
+    border-radius: 999px !important;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+}
+
+.checkout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(249, 115, 22, 0.4);
+    opacity: 1 !important;
 }
 
 footer {

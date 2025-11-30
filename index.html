@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pulse Threads | Modern Fashion Hub</title>
     <link rel="stylesheet" href="css/HomePage.css">
+    <script src="js/auth-guard.js"></script>
 </head>
 <body>
 <header class="site-header">
@@ -19,6 +20,8 @@
 
     <a class="login-btn" href="login.html" data-login-btn>Login</a>
     <a class="logout-btn" href="#" data-logout-btn style="display:none;">Logout</a>
+
+    <a class="favorites-link" href="favorites.html">Favorites</a>
 
     <a class="cart" href="cart.html">
         Cart <span data-cart-count aria-live="polite">0</span>
@@ -42,24 +45,28 @@
 
         <section class="featured-grid">
             <article class="card" data-add-to-cart data-category="mens" data-product="AeroFlex Jacket">
+                <button class="favorite-btn" data-favorite-btn aria-label="Add to favorites">♥</button>
                 <div class="card-image mens"></div>
                 <h3>AeroFlex Jacket</h3>
                 <p>Featherweight warmth engineered for city winds.</p>
                 <button type="button">Add to cart</button>
             </article>
             <article class="card" data-add-to-cart data-category="womens" data-product="Lumen Slip Dress">
+                <button class="favorite-btn" data-favorite-btn aria-label="Add to favorites">♥</button>
                 <div class="card-image womens"></div>
                 <h3>Lumen Slip Dress</h3>
                 <p>Soft satin finish paired with concealed pockets.</p>
                 <button type="button">Add to cart</button>
             </article>
             <article class="card" data-add-to-cart data-category="kids" data-product="Nova Playset">
+                <button class="favorite-btn" data-favorite-btn aria-label="Add to favorites">♥</button>
                 <div class="card-image kids"></div>
                 <h3>Nova Playset</h3>
                 <p>Durable stretch for endless playground adventures.</p>
                 <button type="button">Add to cart</button>
             </article>
             <article class="card" data-add-to-cart data-category="discount" data-product="Bundle Boost Pack">
+                <button class="favorite-btn" data-favorite-btn aria-label="Add to favorites">♥</button>
                 <div class="card-image discount"></div>
                 <h3>Bundle Boost Pack</h3>
                 <p>Mix-and-match wardrobe essentials up to 40% off.</p>

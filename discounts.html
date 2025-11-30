@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pulse Threads | Discounts</title>
     <link rel="stylesheet" href="css/DiscountPage.css">
+    <script src="js/auth-guard.js"></script>
 </head>
 <body>
     <header class="site-header">
@@ -16,6 +17,7 @@
             <a href="kids.html">Kids</a>
             <a href="discounts.html" class="active">Discounts</a>
         </nav>
+        <a class="favorites-link" href="favorites.html">Favorites</a>
         <a class="cart" href="cart.html">
             Cart <span data-cart-count aria-live="polite">0</span>
         </a>
@@ -32,18 +34,21 @@
 
         <section class="deal-grid">
             <article data-add-to-cart data-category="discount" data-product="Weekender Bundle">
+                <button class="favorite-btn" data-favorite-btn aria-label="Add to favorites">♥</button>
                 <h3>Weekender Bundle</h3>
                 <p>Carry-on duffel + knit set + slides</p>
                 <p class="tag">Save 30%</p>
                 <button type="button">Add to cart</button>
             </article>
             <article data-add-to-cart data-category="discount" data-product="Studio Pack">
+                <button class="favorite-btn" data-favorite-btn aria-label="Add to favorites">♥</button>
                 <h3>Studio Pack</h3>
                 <p>Yoga half-zip + sculpt leggings</p>
                 <p class="tag">Buy 1 Get 1 50%</p>
                 <button type="button">Add to cart</button>
             </article>
             <article data-add-to-cart data-category="discount" data-product="Mini Explorer Trio">
+                <button class="favorite-btn" data-favorite-btn aria-label="Add to favorites">♥</button>
                 <h3>Mini Explorer Trio</h3>
                 <p>Kids rain kit + backpack + cap</p>
                 <p class="tag">Save 25%</p>

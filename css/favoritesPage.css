@@ -1,0 +1,130 @@
+.favorites-container {
+    padding: 2rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.favorite-card {
+    background: #ffffff;
+    color: #0f172a;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.favorite-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.1);
+}
+
+.favorite-card .card-image {
+    height: 180px;
+    border-radius: 0.8rem;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.favorite-card .card-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.7));
+}
+
+.favorite-card .card-image.mens {
+    background-image: url('https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80');
+}
+
+.favorite-card .card-image.womens {
+    background-image: url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80');
+}
+
+.favorite-card .card-image.kids {
+    background-image: url('https://images.unsplash.com/photo-1521572160378-3d6466a9aaf8?auto=format&fit=crop&w=600&q=80');
+}
+
+.favorite-card .card-image.discount {
+    background-image: url('https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=600&q=80');
+}
+
+.favorite-card h3 {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+}
+
+.favorite-card .category-label {
+    font-size: 0.85rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.favorite-card .add-cart-btn {
+    border: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 999px;
+    background: #f97316;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    margin-top: auto;
+}
+
+.favorite-card .add-cart-btn:hover {
+    opacity: 0.85;
+}
+
+.favorite-card .add-cart-btn.pulse {
+    animation: buttonPulse 0.4s ease;
+}
+
+@keyframes buttonPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: #ffffff;
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+}
+
+.empty-state p {
+    font-size: 1.2rem;
+    color: #64748b;
+    margin-bottom: 1.5rem;
+}
+
+.empty-state .cta-link {
+    display: inline-block;
+    padding: 0.9rem 1.8rem;
+    border-radius: 50px;
+    background: linear-gradient(120deg, #f97316, #ec4899);
+    color: #fff;
+    font-weight: 600;
+    transition: transform 0.3s ease;
+}
+
+.empty-state .cta-link:hover {
+    transform: translateY(-2px) scale(1.01);
+}
+
+
+

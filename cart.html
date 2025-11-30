@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pulse Threads | Cart</title>
     <link rel="stylesheet" href="css/cartPage.css">
+    <script src="js/auth-guard.js"></script>
 </head>
 <body>
     <header class="site-header">
@@ -16,6 +17,7 @@
             <a href="kids.html">Kids</a>
             <a href="discounts.html">Discounts</a>
         </nav>
+        <a class="favorites-link" href="favorites.html">Favorites</a>
         <a class="cart active" href="cart.html">
             Cart <span data-cart-count aria-live="polite">0</span>
         </a>
@@ -29,9 +31,16 @@
 
         <section class="cart-details">
             <ul data-cart-items aria-live="polite"></ul>
+            <div class="cart-summary">
+                <div class="cart-total">
+                    <span class="total-label">Total:</span>
+                    <span class="total-amount" data-cart-total>$0.00</span>
+                </div>
+            </div>
             <div class="cart-actions">
                 <button type="button" data-clear-cart>Clear cart</button>
                 <a href="index.html">Continue shopping</a>
+                <a href="checkout.html" class="checkout-btn" data-checkout-btn style="display:none;">Proceed to Checkout</a>
             </div>
         </section>
     </main>

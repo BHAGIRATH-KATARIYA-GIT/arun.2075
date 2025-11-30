@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulse Threads | Order Confirmation</title>
+    <link rel="stylesheet" href="css/cartPage.css">
+    <link rel="stylesheet" href="css/checkoutPage.css">
+    <script src="js/auth-guard.js"></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="logo">Pulse Threads</div>
+        <nav class="main-nav">
+            <a href="index.html">Home</a>
+            <a href="mens.html">Mens</a>
+            <a href="womens.html">Womens</a>
+            <a href="kids.html">Kids</a>
+            <a href="discounts.html">Discounts</a>
+        </nav>
+        <a class="favorites-link" href="favorites.html">Favorites</a>
+        <a class="cart" href="cart.html">
+            Cart <span data-cart-count aria-live="polite">0</span>
+        </a>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <h1>Order Confirmed!</h1>
+            <p>Thank you for your purchase.</p>
+        </section>
+
+        <div class="checkout-container" style="max-width: 800px; grid-template-columns: 1fr;">
+            <section class="checkout-items">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <div style="font-size: 4rem; color: #10b981; margin-bottom: 1rem;">✓</div>
+                    <h2 style="color: #10b981; margin-bottom: 0.5rem;">Order Placed Successfully</h2>
+                    <p style="color: #64748b;">Your order has been confirmed and will be processed shortly.</p>
+                </div>
+                
+                <div id="order-details"></div>
+                
+                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid #e2e8f0; text-align: center;">
+                    <a href="index.html" class="cta-link" style="display: inline-block;">Continue Shopping</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Pulse Threads. Thank you for shopping with us!</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const orderDetails = document.getElementById("order-details");
+            const lastOrder = localStorage.getItem("lastOrder");
+            
+            if (lastOrder) {
+                const order = JSON.parse(lastOrder);
+                const PRICE_MAP = window.PRICE_MAP || {};
+                
+                let itemsHtml = '<h3 style="margin-bottom: 1rem;">Order Details</h3>';
+                itemsHtml += '<ul class="checkout-items-list">';
+                
+                let subtotal = 0;
+                order.items.forEach(item => {
+                    const price = item.price || PRICE_MAP[item.product] || 0;
+                    subtotal += price;
+                    let label = "";
+                    if (item.category === "mens") label = "Menswear pick";
+                    else if (item.category === "womens") label = "Womenswear pick";
+                    else if (item.category === "kids") label = "Kidswear pick";
+                    else if (item.category === "discount") label = "Discount deal";
+                    else label = "Fresh drop";
+                    
+                    itemsHtml += `
+                        <li>
+                            <div class="checkout-item-info">
+                                <span class="checkout-product-name">${item.product}</span>
+                                <span class="checkout-product-label">${label}</span>
+                            </div>
+                            <span class="checkout-product-price">$${price.toFixed(2)}</span>
+                        </li>
+                    `;
+                });
+                
+                itemsHtml += '</ul>';
+                itemsHtml += `
+                    <div class="checkout-summary">
+                        <div class="summary-row">
+                            <span>Subtotal:</span>
+                            <span>$${subtotal.toFixed(2)}</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping:</span>
+                            <span>$${(order.total - subtotal).toFixed(2)}</span>
+                        </div>
+                        <div class="summary-row total-row">
+                            <span>Total:</span>
+                            <span>$${order.total.toFixed(2)}</span>
+                        </div>
+                    </div>
+                `;
+                
+                itemsHtml += `
+                    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid #e2e8f0;">
+                        <h3 style="margin-bottom: 1rem;">Shipping Address</h3>
+                        <p style="color: #64748b; line-height: 1.8;">
+                            ${order.shipping.name}<br>
+                            ${order.shipping.address}<br>
+                            ${order.shipping.city}, ${order.shipping.zip}<br>
+                            ${order.shipping.country}<br><br>
+                            Email: ${order.shipping.email}<br>
+                            Phone: ${order.shipping.phone}
+                        </p>
+                    </div>
+                `;
+                
+                orderDetails.innerHTML = itemsHtml;
+            } else {
+                orderDetails.innerHTML = '<p>No order found. <a href="index.html">Return to home</a></p>';
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+

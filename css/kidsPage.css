@@ -34,6 +34,24 @@ a {
     opacity: 1;
 }
 
+.favorites-link {
+    background: #ec4899;
+    color: #fff;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    font-weight: 600;
+    margin-right: 0.5rem;
+    transition: opacity 0.3s ease;
+}
+
+.favorites-link:hover {
+    opacity: 0.85;
+}
+
+.favorites-link.active {
+    background: #be185d;
+}
+
 .cart {
     background: #22d3ee;
     color: #083344;
@@ -65,6 +83,7 @@ a {
     padding: 1.25rem;
     border: 2px dashed rgba(14, 165, 233, 0.3);
     transition: transform 0.25s ease, border-color 0.3s ease;
+    position: relative;
 }
 
 .product-grid article:hover {
@@ -118,6 +137,13 @@ button {
     cursor: pointer;
 }
 
+.product-price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0.5rem 0;
+}
+
 button.pulse {
     animation: buttonPulse 0.4s ease;
 }
@@ -126,6 +152,41 @@ button.pulse {
     0% { transform: scale(1); }
     50% { transform: scale(1.07); }
     100% { transform: scale(1); }
+}
+
+.favorite-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    color: #64748b;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.favorite-btn:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.favorite-btn.active {
+    color: #ec4899;
+    background: rgba(236, 72, 153, 0.1);
+}
+
+.favorite-btn.active:hover {
+    background: rgba(236, 72, 153, 0.2);
 }
 
 .cart-panel {
